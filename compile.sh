@@ -255,6 +255,12 @@ echo "EXTRA_CFLAGS= -g ${EXTRA_CFLAGS}" >> config.mak
 echo "CHOST= ${CHOST}" >> config.mak
 export VLC_EXTRA_CFLAGS="${EXTRA_CFLAGS}"
 
+if  test -d "../../../../tarballs" ; then
+    echo "fetch local tarballs"
+    mkdir -p ../tarballs
+    cp -n -v ../../../../tarballs/* ../tarballs/ || true
+fi
+
 make fetch
 # We already have zlib available
 [ -e .zlib ] || (mkdir -p zlib; touch .zlib)
