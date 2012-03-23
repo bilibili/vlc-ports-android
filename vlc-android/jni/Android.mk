@@ -60,15 +60,12 @@ LOCAL_LDLIBS := -L$(VLC_CONTRIB)/lib \
 	$(VLC_BUILD_DIR)/src/.libs/libvlccore.a \
 	$(VLC_BUILD_DIR)/compat/.libs/libcompat.a \
 	-ldl -lz -lm -llog \
-	-ldvbpsi -lebml -lmatroska -ltag \
-	-logg -lFLAC -ltheora \
+	-ldvbpsi \
 	-lmpeg2 -la52 \
-	-lavformat -lavcodec -lswscale -lavutil -lpostproc -lgsm -lopenjpeg \
-	-lliveMedia -lUsageEnvironment -lBasicUsageEnvironment -lgroupsock \
-	-lspeex -lspeexdsp \
-	-lxml2 -lpng -lgnutls -lgcrypt -lgpg-error \
+	-lavformat -lavcodec -lswscale -lavutil -lpostproc \
+	-lgnutls -lgcrypt -lgpg-error \
 	-lnettle -lhogweed -lgmp \
-	-lfreetype -liconv -lass -lfribidi -lopus \
+	-lfaad \
 	$(CPP_STATIC)
 
 include $(BUILD_SHARED_LIBRARY)
