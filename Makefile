@@ -45,7 +45,7 @@ $(VLC_APK): $(LIBVLCJNI) $(JAVA_SOURCES)
 	echo `id -u -n`@`hostname` > $(SRC)/assets/builder.txt
 	git rev-parse --short HEAD > $(SRC)/assets/revision.txt
 	./gen-env.sh $(SRC)
-	$(VERBOSE)cd $(SRC) && ant $(ANT_OPTS) $(ANT_TARGET)
+	$(VERBOSE)cd $(SRC)
 
 VLC_MODULES=`./find_modules.sh $(VLC_BUILD_DIR)`
 
