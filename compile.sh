@@ -231,12 +231,41 @@ cd contrib/android
     --disable-upnp \
     --disable-gme \
     --disable-tremor \
-    --enable-vorbis \
+    --disable-vorbis \
     --disable-sidplay2 \
+    --disable-ass \
+    --disable-fribidi \
+    --disable-taglib \
+    --disable-live555 \
+    --disable-schroedinger \
+    --disable-matroska \
+    --disable-goom \
+    --disable-gsm \
+    --disable-speex \
+    --disable-speexdsp \
+    --disable-freetype2 \
+    --disable-lua \
+    --disable-flac \
+    --disable-ogg \
+    --disable-dca \
+    --disable-theora \
+    --disable-modplug \
+    --disable-png \
+    --disable-openjpg \
+    --disable-libxml2 \
+    --disable-opus \
+    --disable-mad \
+    --disable-postproc \
+    --disable-libmpeg2 \
+    --disable-a52 \
+    --disable-vncserver \
+    --disable-png \
+    --disable-jpeg \
     --disable-samplerate \
-    --disable-faad2 \
+    --enable-faad2 \
     --disable-harfbuzz \
-    --enable-iconv
+    --disable-ssh2 \
+    --disable-iconv
 
 # TODO: mpeg2, theora
 
