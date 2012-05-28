@@ -184,10 +184,32 @@ if [ -z "${VLC_FAST_COMPILE}" ]; then
     --disable-tremor \
     --disable-vorbis \
     --disable-sidplay2 \
+    --disable-ass \
+    --disable-fribidi \
+    --disable-taglib \
+    --disable-live555 \
+    --disable-schroedinger \
+    --disable-matroska \
+    --disable-goom \
+    --disable-gsm \
+    --disable-speex \
+    --disable-speexdsp \
+    --disable-freetype2 \
+    --disable-lua \
+    --disable-flac \
+    --disable-ogg \
+    --disable-dca \
+    --disable-theora \
+    --disable-modplug \
+    --disable-png \
+    --disable-openjpg \
+    --disable-libxml2 \
+    --disable-opus \
+    --disable-mad \
     --disable-samplerate \
-    --disable-faad2 \
+    --enable-faad2 \
     --disable-harfbuzz \
-    --enable-iconv
+    --disable-iconv
 fi
 
 # TODO: mpeg2, theora
