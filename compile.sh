@@ -6,6 +6,9 @@
 
 set -e
 
+# patched for armeabi-v7a
+export ANDROID_ABI=armeabi-v7a
+
 if [ -z "$ANDROID_NDK" -o -z "$ANDROID_SDK" -o -z "$ANDROID_ABI" ]; then
    echo "You must define ANDROID_NDK, ANDROID_SDK and ANDROID_ABI before starting."
    echo "They must point to your NDK and SDK directories.\n"
