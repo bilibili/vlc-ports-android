@@ -1,5 +1,6 @@
 /vlc/
 /android-libs/*.so
+/patches/100*.patch
 local.properties
 .DS_Store
 *.keystore
