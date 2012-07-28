@@ -81,6 +81,7 @@ export PATH=${NDK_TOOLCHAIN_PATH}:${PATH}
 ANDROID_PATH="`pwd`"
 
 # 1/ libvlc, libvlccore and its plugins
+if [ -z "${VLC_FAST_COMPILE}" ]; then
 TESTED_HASH=41edeb738
 if [ ! -d "vlc" ]; then
     echo "VLC source not found, cloning"
@@ -108,6 +109,9 @@ git checkout -B android ${TESTED_HASH}
 EOF
         exit 1
     fi
+fi
+else
+    cd vlc
 fi
 
 if [ ${ANDROID_ABI} = "armeabi-v7a" ] ; then
@@ -160,6 +164,7 @@ cd ../..
 echo "Building the contribs"
 mkdir -p contrib/android
 cd contrib/android
+if [ -z "${VLC_FAST_COMPILE}" ]; then
 ../bootstrap --host=${TARGET_TUPLE} --disable-disc --disable-sout --enable-small \
     --disable-dca \
     --disable-goom \
@@ -183,6 +188,7 @@ cd contrib/android
     --disable-faad2 \
     --disable-harfbuzz \
     --enable-iconv
+fi
 
 # TODO: mpeg2, theora
 
@@ -199,10 +205,13 @@ else
     OPTS="--enable-debug"
 fi
 
+if [ -z "${VLC_FAST_COMPILE}" ]; then
 echo "EXTRA_CFLAGS= -g ${EXTRA_CFLAGS}" >> config.mak
 echo "CHOST= ${CHOST}" >> config.mak
+fi
 export VLC_EXTRA_CFLAGS="${EXTRA_CFLAGS}"
 
+if [ -z "${VLC_FAST_COMPILE}" ]; then
 if  test -d "../../../../tarballs" ; then
     echo "fetch local tarballs"
     mkdir -p ../tarballs
@@ -211,13 +220,14 @@ fi
 
 make fetch
 make $MAKEFLAGS
+fi
 
 cd ../.. && mkdir -p android && cd android
 
 if [ $# -eq 1 ] && [ "$1" = "jni" ]; then
     CLEAN="jniclean"
     RELEASEFLAG="vlc-android/obj/local/armeabi-v7a/libvlcjni.so"
-else
+elif [ -z "${VLC_FAST_COMPILE}" ]; then
     CLEAN="distclean"
     echo "Bootstraping"
     ../bootstrap
