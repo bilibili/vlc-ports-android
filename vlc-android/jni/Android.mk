@@ -3,8 +3,10 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE    := libvlcjni
 
-LOCAL_SRC_FILES := libvlcjni.c libvlcjni-util.c libvlcjni-track.c libvlcjni-medialist.c aout.c vout.c libvlcjni-equalizer.c
-LOCAL_SRC_FILES += thumbnailer.c pthread-condattr.c pthread-rwlocks.c pthread-once.c eventfd.c sem.c
+LOCAL_SRC_FILES := libvlcjni-util.c aout.c
+LOCAL_SRC_FILES += pthread-condattr.c pthread-rwlocks.c pthread-once.c eventfd.c sem.c vout.c
+LOCAL_SRC_FILES += libvlcjni_danmaku.c
+LOCAL_SRC_FILES += jni_bundle.c jni_libvlcevent.c jni_vsl.c jni_libvlc.c
 LOCAL_SRC_FILES += pipe2.c
 LOCAL_SRC_FILES += wchar/wcpcpy.c
 LOCAL_SRC_FILES += wchar/wcpncpy.c

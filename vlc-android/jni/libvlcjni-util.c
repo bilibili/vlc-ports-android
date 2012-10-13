@@ -43,7 +43,9 @@ jint getInt(JNIEnv *env, jobject thiz, const char* field) {
     jclass clazz = (*env)->GetObjectClass(env, thiz);
     jfieldID fieldMP = (*env)->GetFieldID(env, clazz,
                                           field, "I");
-    return (*env)->GetIntField(env, thiz, fieldMP);
+    jint ret = (*env)->GetIntField(env, thiz, fieldMP);
+    (*env)->DeleteLocalRef(env, clazz);
+    return ret;
 }
 void setInt(JNIEnv *env, jobject item, const char* field, jint value) {
     jclass cls;
@@ -58,13 +60,16 @@ void setInt(JNIEnv *env, jobject item, const char* field, jint value) {
         return;
 
     (*env)->SetIntField(env, item, fieldId, value);
+    (*env)->DeleteLocalRef(env, cls);
 }
 
 jlong getLong(JNIEnv *env, jobject thiz, const char* field) {
     jclass clazz = (*env)->GetObjectClass(env, thiz);
     jfieldID fieldMP = (*env)->GetFieldID(env, clazz,
                                           field, "J");
-    return (*env)->GetLongField(env, thiz, fieldMP);
+    jlong ret = (*env)->GetLongField(env, thiz, fieldMP);
+    (*env)->DeleteLocalRef(env, clazz);
+    return ret;
 }
 void setLong(JNIEnv *env, jobject item, const char* field, jlong value) {
     jclass cls;
@@ -79,6 +84,7 @@ void setLong(JNIEnv *env, jobject item, const char* field, jlong value) {
         return;
 
     (*env)->SetLongField(env, item, fieldId, value);
+    (*env)->DeleteLocalRef(env, cls);
 }
 
 void setFloat(JNIEnv *env, jobject item, const char* field, jfloat value) {
@@ -94,6 +100,7 @@ void setFloat(JNIEnv *env, jobject item, const char* field, jfloat value) {
         return;
 
     (*env)->SetFloatField(env, item, fieldId, value);
+    (*env)->DeleteLocalRef(env, cls);
 }
 void setString(JNIEnv *env, jobject item, const char* field, const char* text) {
     jclass cls;
@@ -113,6 +120,7 @@ void setString(JNIEnv *env, jobject item, const char* field, const char* text) {
     if (jstr == NULL)
         return;
     (*env)->SetObjectField(env, item, fieldId, jstr);
+    (*env)->DeleteLocalRef(env, cls);
 }
 
 void arrayListGetIDs(JNIEnv *env, jclass* p_class, jmethodID* p_add, jmethodID* p_remove) {
@@ -140,10 +148,13 @@ jobject getEventHandlerReference(JNIEnv *env, jobject thiz, jobject eventHandler
     jmethodID methodID = (*env)->GetMethodID(env, cls, "callback", "(ILandroid/os/Bundle;)V");
     if (!methodID) {
         LOGE("setEventHandler: failed to get the callback method");
+        (*env)->DeleteLocalRef(env, cls);
         return NULL;
     }
 
-    return (*env)->NewGlobalRef(env, eventHandler);
+    jobject ref = (*env)->NewGlobalRef(env, eventHandler);
+    (*env)->DeleteLocalRef(env, cls);
+    return ref;
 }
 
 static void debug_buffer_log(void *data, int level, const char *fmt, va_list ap)

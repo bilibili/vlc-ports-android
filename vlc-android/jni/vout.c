@@ -34,6 +34,11 @@ static jobject vout_android_java_surf = NULL;
 static jobject vout_android_subtitles_surf = NULL;
 static bool vout_video_player_activity_created = false;
 
+// FIXME: this is VlcMediaPlayer
+extern void *get_vout_android_gui() {
+    return vout_android_gui;
+}
+
 void *jni_LockAndGetSubtitlesSurface() {
     pthread_mutex_lock(&vout_android_lock);
     while (vout_android_subtitles_surf == NULL)
@@ -43,15 +48,19 @@ void *jni_LockAndGetSubtitlesSurface() {
 
 void *jni_LockAndGetAndroidSurface() {
     pthread_mutex_lock(&vout_android_lock);
+#if 0
     while (vout_android_surf == NULL)
         pthread_cond_wait(&vout_android_surf_attached, &vout_android_lock);
+#endif
     return vout_android_surf;
 }
 
 jobject jni_LockAndGetAndroidJavaSurface() {
     pthread_mutex_lock(&vout_android_lock);
+#if 0
     while (vout_android_java_surf == NULL)
         pthread_cond_wait(&vout_android_surf_attached, &vout_android_lock);
+#endif
     return vout_android_java_surf;
 }
 
