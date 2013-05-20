@@ -187,12 +187,12 @@ then
 MAKEFLAGS=-j`sysctl -n machdep.cpu.thread_count`
 fi
 
-export PATH=`pwd`/extras/tools/build/bin:$PATH
-echo "Building tools"
-cd extras/tools
-./bootstrap
-make $MAKEFLAGS
-cd ../..
+# export PATH=`pwd`/extras/tools/build/bin:$PATH
+# echo "Building tools"
+# cd extras/tools
+# ./bootstrap
+# make $MAKEFLAGS
+# cd ../..
 
 echo "Building the contribs"
 mkdir -p contrib/android
