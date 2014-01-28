@@ -40,6 +40,12 @@ LOCAL_SRC_FILES += wchar/wmemset.c
 
 LOCAL_C_INCLUDES := $(VLC_SRC_DIR)/include
 
+ifeq ($(ANDROID_ABI), x86)
+    LOCAL_C_INCLUDES += $(VLC_SRC_DIR)/contrib/i686-linux-android/include
+else
+    LOCAL_C_INCLUDES += $(VLC_SRC_DIR)/contrib/arm-linux-androideabi/include
+endif
+
 ARCH=$(ANDROID_ABI)
 
 CPP_STATIC=$(ANDROID_NDK)/sources/cxx-stl/gnu-libstdc++$(CXXSTL)/libs/$(ARCH)/libgnustl_static.a
