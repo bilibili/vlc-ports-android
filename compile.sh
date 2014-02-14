@@ -275,7 +275,7 @@ cd ../.. && mkdir -p android && cd android
 
 if [ $# -eq 1 ] && [ "$1" = "jni" ]; then
     CLEAN="jniclean"
-    TARGET="vlc-android/obj/local/armeabi-v7a/libvlcjni.so"
+    TARGET="vlc-android/obj/local/$ANDROID_ABI/libvlcjni.so"
 else
     CLEAN="distclean"
     echo "Bootstraping"
